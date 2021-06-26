@@ -1,3 +1,4 @@
-module.exports = {
+const withTM = require('next-transpile-modules')(['d3-scale', 'd3-time'])
+module.exports = withTM({
   reactStrictMode: true,
-}
+})
