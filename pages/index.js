@@ -21,7 +21,7 @@ export const getStaticProps = async (context) => {
   const provincesList = await fetchProvinces()
   return {
     props: {
-      provincesList,
+      provincesList: provincesList || [],
     }
   }
 }
