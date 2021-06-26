@@ -5,7 +5,7 @@ import {
   Geographies,
   Geography,
 } from 'react-simple-maps';
-import { scaleLog } from 'd3-scale';
+// import { scaleLog } from 'd3-scale';
 import { format } from 'date-fns'
 import { useTheme } from 'next-themes'
 import geoUrl from '../../../utils/provinces-topo.json'
@@ -20,20 +20,20 @@ const MapContent = ({ setTooltipContent, summary, provinces, province, handleMap
     handleMapClick(selected)
   }
 
-  const colorScale = useMemo(() => {
-    const { min, max } = positif.filter((pos) => pos.province !== 'ALL').reduce((acc, curr) => {
-      if (curr.value < acc.min || acc.min === 0) {
-        acc.min = curr.value
-      }
-      if (curr.value > acc.max) {
-        acc.max = curr.value
-      }
-      return acc;
-    }, { min: 0, max: 0 })
-    return scaleLog()
-      .domain([min, max])
-      .range(['#FFFFFF', '#FF0008'])
-  }, [positif])
+  // const colorScale = useMemo(() => {
+  //   const { min, max } = positif.filter((pos) => pos.province !== 'ALL').reduce((acc, curr) => {
+  //     if (curr.value < acc.min || acc.min === 0) {
+  //       acc.min = curr.value
+  //     }
+  //     if (curr.value > acc.max) {
+  //       acc.max = curr.value
+  //     }
+  //     return acc;
+  //   }, { min: 0, max: 0 })
+  //   return scaleLog()
+  //     .domain([min, max])
+  //     .range(['#FFFFFF', '#FF0008'])
+  // }, [positif])
 
   return (
     <ComposableMap
@@ -51,7 +51,8 @@ const MapContent = ({ setTooltipContent, summary, provinces, province, handleMap
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={colorScale(positif.find((v) => v.province.toLowerCase() === geoProvince)?.value)}
+                  // fill={colorScale(positif.find((v) => v.province.toLowerCase() === geoProvince)?.value)}
+                  fill="#f03232"
                   stroke={theme === 'dark' ? 'rgb(255, 255, 255, 1)' : 'rgb(245, 158, 11)'}
                   strokeWidth={selectedProvince === geoProvince ? 0.3 : 0.02}
                   onMouseEnter={() => {
