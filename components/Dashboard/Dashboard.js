@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Card from '../Layout/UI/Card'
 import Summary from './Summary/Summary'
+import Select from '../Layout/UI/Select'
 import Map from './Map/Map'
 import Daily from './Daily/Daily'
 import { format } from 'date-fns'
@@ -53,16 +54,12 @@ const Dashboard = ({ provincesList }) => {
     <div className="flex flex-col">
       <div className="lg:grid lg:grid-cols-6 lg:gap-4 flex flex-col justify-between">
         <div className="text-sm mb-2">
-          <select
-            value={selectedProvince}
-            onChange={(e) => handleChangeProvince(e.target.value)}
-            className="bg-indigo-50 border-2 rounded-xl border-gray-500 shadow-lg dark:bg-gray-800 py-2 tracking-wide mb-2 w-full"
-          >
-            <option value="">SELURUH INDONESIA</option>
-            {provincesList.map((prov) => (
-              <option key={prov} value={prov}>{prov}</option>
-            ))}
-          </select>
+          <Select
+            emptyValue="SELURUH INDONESIA"
+            defaultValue={selectedProvince}
+            optionList={provincesList.map((v) => ({ key: v, value: v }))}
+            handleChange={handleChangeProvince}
+          />
           <Card>
             <p className="text-lg">Last Updated</p>
             <p className="text-lg">{ selectedData.lastUpdated ? format(selectedData.lastUpdated, 'dd MMM yyyy') : '...' }</p>

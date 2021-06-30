@@ -45,25 +45,23 @@ const Vaccine = () => {
   const lastUpdated = timestamp ? new Date(timestamp) : null
 
   return (
-    <div className="flex flex-col">
-      <div className="md:grid md:grid-cols-2 md:gap-4 flex flex-col justify-between">
-        <Card className="md:col-span-2 md:mb-0 mb-2">
-          <p className="text-lg">Last Updated</p>
-          <p className="text-lg">{ lastUpdated ? format(lastUpdated, 'dd MMM yyyy') : '...' }</p>
-        </Card>
-        {summaryData.pemeriksaan.map((sum) => (
-          <div key={sum.key} className="md:mb-0 mb-2">
-            <SummaryPemeriksaan data={sum} />
-          </div>
-        ))}
-        {summaryData.vaksinasi.map((sum) => (
-          <div key={sum.key} className="md:mb-0 mb-2">
-            <SummaryVaccine data={sum} />
-          </div>
-        ))}
-        <div className="md:mb-0 col-span-2 mb-2">
-          <DailyVaccine data={data} />
+    <div className="grid grid-cols-2 gap-4">
+      <Card className="col-span-2 md:mb-0 mb-2">
+        <p className="text-lg">Last Updated</p>
+        <p className="text-lg">{ lastUpdated ? format(lastUpdated, 'dd MMM yyyy') : '...' }</p>
+      </Card>
+      {summaryData.pemeriksaan.map((sum) => (
+        <div key={sum.key} className="col-span-2 md:col-span-1 md:mb-0 mb-2">
+          <SummaryPemeriksaan data={sum} />
         </div>
+      ))}
+      {summaryData.vaksinasi.map((sum) => (
+        <div key={sum.key} className="md:mb-0 mb-2">
+          <SummaryVaccine data={sum} />
+        </div>
+      ))}
+      <div className="md:mb-0 col-span-2 mb-2">
+        <DailyVaccine data={data} />
       </div>
     </div>
   )

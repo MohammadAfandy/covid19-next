@@ -14,3 +14,7 @@
 canvas.chartjs-render-monitor {
   max-height: 400px;
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+}

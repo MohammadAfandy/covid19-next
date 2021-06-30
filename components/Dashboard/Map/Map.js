@@ -5,11 +5,15 @@ import ReactTooltip from 'react-tooltip';
 import { useEffect } from 'react';
 
 const Map = ({ summary, provinces, province, handleChangeProvince }) => {
+  const [isTooltipVisible, setTooltipVisibility] = useState(false)   
   const [content, setContent] = useState('')
+  useEffect(() => {
+    setTooltipVisibility(true)
+  }, [])
 
   return (
     <Card className="py-0">
-      <ReactTooltip type="info">{content}</ReactTooltip>
+      {isTooltipVisible && <ReactTooltip type="info">{content}</ReactTooltip>}
       <MapContent
         setTooltipContent={setContent}
         handleMapClick={handleChangeProvince}
