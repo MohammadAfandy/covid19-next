@@ -33,6 +33,8 @@ const Chart = ({ ChartType, height = 300, data, options, plugins = [], isPercent
           }
         },
         tooltips: {
+          mode: 'index',
+          intersect: false,
           callbacks: {
             label: (tooltipItem, data) => {
               let label = data.datasets[tooltipItem.datasetIndex].label || '';

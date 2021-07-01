@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import Container from './Container'
 import GenderChart from './GenderChart'
 import AgeChart from './AgeChart'
 import SymptompChart from './SymptompChart'
@@ -19,6 +19,28 @@ const Stats = () => {
   const symptomData = listData ? listData.gejala : []
   const conditionData = listData ? listData.kondisi_penyerta : []
   const lastUpdated = timestamp ? new Date(timestamp) : null
+  const menus = [
+    {
+      title: "Berdasarkan Jenis Kelamin",
+      component: GenderChart,
+      data: genderData,
+    },
+    {
+      title: "Berdasarkan Umur",
+      component: AgeChart,
+      data: ageData,
+    },
+    {
+      title: "Berdasarkan Gejala",
+      component: SymptompChart,
+      data: symptomData,
+    },
+    {
+      title: "Berdasarkan Kondisi Penyerta",
+      component: ConditionChart,
+      data: conditionData,
+    },
+  ]
 
   return (
     <div className="flex flex-col">
@@ -27,18 +49,16 @@ const Stats = () => {
           <p className="text-lg">Last Updated</p>
           <p className="text-lg">{ lastUpdated ? format(lastUpdated, 'dd MMM yyyy') : '...' }</p>
         </Card>
-        <div className="md:mb-0 mb-2">
-          <GenderChart data={genderData} />
-        </div>
-        <div className="md:mb-0 mb-2">
-          <AgeChart listTab={listTab} data={ageData} />
-        </div>
-        <div className="md:mb-0 mb-2">
-          <SymptompChart listTab={listTab} data={symptomData} />
-        </div>
-        <div className="md:mb-0 mb-2">
-          <ConditionChart listTab={listTab} data={conditionData} />
-        </div>
+        {menus.map(({ title, component, data }, idx) => (
+          <div className="md:mb-0 mb-2" key={idx}>
+            <Container
+              title={title}
+              Component={component}
+              data={data}
+              listTab={listTab}
+            />
+          </div>
+        ))}
       </div>
     </div>
   )

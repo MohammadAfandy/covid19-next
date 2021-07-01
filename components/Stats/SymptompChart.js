@@ -48,10 +48,7 @@ const SymptompChart = ({ listTab, data }) => {
     }]
   }
   return (
-    <Card className="relative h-full pt-4 py-16">
-      <div className="my-3 flex flex-col">
-        <h2 className=" text-2xl">Berdasarkan Gejala</h2>
-      </div>
+    <>
       <NavTab className="mx-1 mb-5" listTab={listTab} selectedTab={selectedTab} onChangeTab={onChangeTab} />
       <Chart
         ChartType={Bar}
@@ -85,17 +82,7 @@ const SymptompChart = ({ listTab, data }) => {
           },
         }}
       />
-      <div className="absolute bottom-2 border-t w-full">
-        <p>
-          <span>Total Data : </span>
-          <span className="font-bold">{data.current_data?.toLocaleString()}</span>
-        </p>
-        <p>
-          <span className="font-bold">{round(data.missing_data, 2)}% </span>
-          <span>Tidak memiliki data Gejala</span>
-        </p>
-      </div>
-    </Card>
+    </>
   )
 }
 

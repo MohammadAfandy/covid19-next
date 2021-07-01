@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Card from '../Layout/UI/Card'
 import NavTab from '../Layout/UI/NavTab'
 import { Bar } from 'react-chartjs-2'
 import Chart from '../Layout/UI/Chart'
@@ -48,10 +47,7 @@ const AgeChart = ({ listTab, data }) => {
     }]
   }
   return (
-    <Card className="relative h-full pt-4 py-16">
-      <div className="my-3 flex flex-col">
-        <h2 className=" text-2xl">Berdasarkan Umur</h2>
-      </div>
+    <>
       <NavTab className="mx-5 mb-5" listTab={listTab} selectedTab={selectedTab} onChangeTab={onChangeTab} />
       <Chart
         ChartType={Bar}
@@ -85,17 +81,7 @@ const AgeChart = ({ listTab, data }) => {
           },
         }}
       />
-      <div className="absolute bottom-2 border-t w-full">
-        <p>
-          <span>Total Data : </span>
-          <span className="font-bold">{data?.current_data?.toLocaleString()}</span>
-        </p>
-        <p>
-          <span className="font-bold">{round(data?.missing_data, 2)}% </span>
-          <span>Tidak memiliki data Umur</span>
-        </p>
-      </div>
-    </Card>
+    </>
   )
 }
 
